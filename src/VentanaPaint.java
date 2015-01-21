@@ -23,6 +23,7 @@ public class VentanaPaint extends javax.swing.JFrame {
     //en una variable de tipo bufferedImage puedo almacenar una imagen
     private BufferedImage buffer = null;
     
+    Color colorSeleccionado=Color.BLACK;
 
     /**
      * Creates new form VentanaPaint
@@ -81,7 +82,12 @@ public class VentanaPaint extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("jButton5");
+        jButton5.setText("Cancelar");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton5MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -207,7 +213,7 @@ public class VentanaPaint extends javax.swing.JFrame {
         linea.y2=evt.getY();
         float dash[]= {10.0f};
        g2.setStroke(new BasicStroke(3.0f,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,10.0f,dash,0.0f));
-        g2.setColor(Color.red);
+        g2.setColor(colorSeleccionado);
         g2.draw(linea);
         
     }//GEN-LAST:event_jPanel1MouseDragged
@@ -222,18 +228,23 @@ public class VentanaPaint extends javax.swing.JFrame {
        //pinto la linea en el buffer
         g2.draw(linea);
         
-         g2.setColor(Color.red);
+         g2.setColor(colorSeleccionado);
       g2=(Graphics2D) jPanel1.getGraphics();
       
     }//GEN-LAST:event_jPanel1MouseReleased
 
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
-        
+        colorSeleccionado=jColorChooser1.getColor();
+        jDialog1.setVisible(false);
     }//GEN-LAST:event_jButton4MousePressed
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
       jDialog1.setVisible(true);
     }//GEN-LAST:event_jButton3MousePressed
+
+    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
+         jDialog1.setVisible(false);
+    }//GEN-LAST:event_jButton5MousePressed
 
     /**
      * @param args the command line arguments
